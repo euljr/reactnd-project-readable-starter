@@ -1,5 +1,3 @@
-const uuidv1 = require('uuid/v1');
-
 const headers = {
   'Accept': 'application/json',
   'Authorization': 'whatever-you-want',
@@ -35,13 +33,7 @@ export const votePost = (id, option) => doPOST(`/posts/${id}`, { option });
 export const editPost = (id, post) => doPUT(`/posts/${id}`, post);
 export const deletePost = id => doDELETE(`/posts/${id}`);
 export const getComments = postId => doGET(`/posts/${postId}/comments`);
-export const addComment = (body, author, parentId) => doPOST(`/comments`, {
-  id: uuidv1(),
-  timestamp: Date.now(),
-  body,
-  author,
-  parentId,
-});
+export const addComment = comment => doPOST(`/comments`, comment);
 export const getCommentById = id => doGET(`/comments/${id}`);
 export const voteComment = (id, option) => doPOST(`/comments/${id}`, { option });
 export const editComment = (id, comment) => doPUT(`/comments/${id}`, comment);
