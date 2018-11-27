@@ -29,14 +29,7 @@ const doDELETE = ep => fetch(API_URL + ep, { method: 'DELETE', headers })
 export const getCategories = () => doGET('/categories')
   .then(data => data.categories);
 export const getPosts = (category = null) => doGET((category ? `/${category}` : '') + '/posts');
-export const addPost = (title, body, author, category) => doPOST('/posts', {
-  id: uuidv1(),
-  timestamp: Date.now(),
-  title,
-  body,
-  author,
-  category,
-});
+export const addPost = post => doPOST('/posts', post);
 export const getPostById = id => doGET(`/posts/${id}`);
 export const votePost = (id, option) => doPOST(`/posts/${id}`, { option });
 export const editPost = (id, post) => doPUT(`/posts/${id}`, post);
