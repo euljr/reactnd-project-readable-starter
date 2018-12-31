@@ -1,4 +1,4 @@
-import { RECEIVE_POSTS, SAVE_POST } from "../actions/posts";
+import { RECEIVE_POSTS, SAVE_POST, DELETE_POST } from "../actions/posts";
 
 const initialState = {
   byId: {},
@@ -25,6 +25,15 @@ export default function posts(state = initialState, action) {
             ...state.byId[action.post.id],
             ...action.post,
           },
+        },
+      };
+    case DELETE_POST:
+      let posts = state.byId;
+      delete posts[action.post.id];
+      return {
+        ...state,
+        byId: {
+          ...posts,
         },
       };
     default:

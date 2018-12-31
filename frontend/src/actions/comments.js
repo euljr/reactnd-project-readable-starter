@@ -80,11 +80,11 @@ export function downVoteComment({ id }) {
   }
 }
 
-export function editComment({ id, title, body }) {
+export function editComment({ id, body }) {
   return (dispatch, getState) => {
     const currentComment = getState().comments.byId[id];
-    dispatch(saveComment({ ...currentComment, title, body }));
-    return API.editComment(id, { title, body })
+    dispatch(saveComment({ ...currentComment, body }));
+    return API.editComment(id, { body })
       .catch(() => dispatch(saveComment(currentComment)));
   }
 }

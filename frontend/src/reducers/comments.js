@@ -1,4 +1,4 @@
-import { RECEIVE_COMMENTS, SAVE_COMMENT } from "../actions/comments";
+import { RECEIVE_COMMENTS, SAVE_COMMENT, DELETE_COMMENT } from "../actions/comments";
 
 const initialState = {
   byId: {},
@@ -25,6 +25,15 @@ export default function comments(state = initialState, action) {
             ...state.byId[action.comment.id],
             ...action.comment,
           },
+        },
+      };
+    case DELETE_COMMENT:
+      let comments = state.byId;
+      delete comments[action.comment.id];
+      return {
+        ...state,
+        byId: {
+          ...comments,
         },
       };
     default:
