@@ -13,10 +13,11 @@ function receiveComments(comments) {
   };
 }
 
-function saveComment(comment) {
+function saveComment(comment, newComment = false) {
   return {
     type: SAVE_COMMENT,
     comment,
+    newComment,
   };
 }
 
@@ -47,7 +48,7 @@ export function addComment(data) {
       author,
       parentId,
     };
-    dispatch(saveComment(comment));
+    dispatch(saveComment(comment, true));
     return API.addComment(comment)
       .then(comment => dispatch(saveComment(comment)))
       .catch(() => dispatch(deleteComment(comment)));
