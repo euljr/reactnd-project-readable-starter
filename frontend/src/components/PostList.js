@@ -44,7 +44,7 @@ class PostList extends Component {
   render() {
     const { posts, category, addPost, classes } = this.props;
     const { orderBy, orderDir } = this.state;
-    const sortedPosts = posts.sort((a, b) => {
+    const sortedPosts = [...posts].sort((a, b) => {
       if(orderBy === 'date') {
         return orderDir === 'desc' ? b.timestamp - a.timestamp : a.timestamp - b.timestamp;
       } else {
