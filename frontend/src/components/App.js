@@ -33,16 +33,17 @@ class App extends Component {
     loading: true,
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const { loadCategories, loadPosts, showLoading, hideLoading } = this.props;
-    showLoading()
-    Promise.resolve()
-      .then(() => (new Promise(r => setTimeout(() => r(), 1000))))
-      .then(() => loadCategories())
-      .then(() => loadPosts())
-      .then(() => hideLoading())
-      .catch(() => hideLoading())
-      .then(() => this.setState({ loading: false }));
+    showLoading();
+    try {
+      await loadCategories();
+      await loadPosts();
+    } catch(e) {
+      console.warn('Error loading api data');
+    }
+    hideLoading();
+    this.setState({ loading: false });
   }
 
   render() {
