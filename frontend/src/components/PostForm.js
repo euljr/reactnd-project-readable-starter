@@ -6,7 +6,7 @@ class PostForm extends Component {
   static propTypes = {
     post: PropTypes.object,
     cancel: PropTypes.func,
-    saveComment: PropTypes.func.isRequired,
+    savePost: PropTypes.func.isRequired,
   };
 
   state = {
