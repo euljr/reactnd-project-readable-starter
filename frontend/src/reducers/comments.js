@@ -28,7 +28,7 @@ export default function comments(state = initialState, action) {
         },
       };
     case DELETE_COMMENT:
-      let comments = state.byId;
+      let comments = { ...state.byId };
       delete comments[action.comment.id];
       return {
         ...state,

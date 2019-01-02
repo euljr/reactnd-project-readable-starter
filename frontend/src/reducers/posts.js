@@ -28,7 +28,7 @@ export default function posts(state = initialState, action) {
         },
       };
     case DELETE_POST:
-      let posts = state.byId;
+      let posts = { ...state.byId };
       delete posts[action.post.id];
       return {
         ...state,
